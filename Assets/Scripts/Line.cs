@@ -1,34 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Line : MonoBehaviour
 {
     public GameObject linePrefab;
     public GameObject currentLine;
 
-
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
 
     public List<Vector2> positions;
 
-    public Material corAtual;
+    public Color blueColor;
 
-    void Start()
-    {
-        corAtual = linePrefab.GetComponent<Renderer>().material;
-    }
+    public Button button;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-
-        }
-
-
         if(Input.GetMouseButtonDown(0))
         {
             CreateLine();
@@ -49,8 +40,11 @@ public class Line : MonoBehaviour
     {
         // Create a line (position is set by Line Renderer component)
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
-        lineRenderer = currentLine.GetComponent<LineRenderer>();
+        lineRenderer = currentLine.transform.GetComponent<LineRenderer>();
         edgeCollider = currentLine.GetComponent<EdgeCollider2D>();
+
+
+        button.onClick.AddListener(() => ChangeColor(currentLine, lineRenderer));
         
         positions.Clear();        
 
@@ -72,5 +66,11 @@ public class Line : MonoBehaviour
 
      
         edgeCollider.points = positions.ToArray();
+    }
+
+    public void ChangeColor(GameObject correntLine, LineRenderer lineRenderer)
+    {
+        correntLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
+        lineRenderer.transform.GetComponent<LineRenderer>().material.color = blueColor;
     }
 }
