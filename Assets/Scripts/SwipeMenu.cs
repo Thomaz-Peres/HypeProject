@@ -14,7 +14,7 @@ public class SwipeMenu : MonoBehaviour
     void Update()
     {
         pos = new float[transform.childCount];
-        float distance = 1f / (pos.Length - 1f);
+        float distance = 0.5f / (pos.Length - 0.5f);
         for (int i = 0; i < pos.Length; i++)
         {
             pos[i] = distance * i;
