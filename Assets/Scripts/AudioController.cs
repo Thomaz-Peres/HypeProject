@@ -9,7 +9,7 @@ public class AudioController : MonoBehaviour
 
     private float musicVolume;
 
-    private void Awake()
+     void Start()
     {
         AudioSource.Play();
     }
